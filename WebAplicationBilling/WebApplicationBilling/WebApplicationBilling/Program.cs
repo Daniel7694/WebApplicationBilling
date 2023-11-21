@@ -5,6 +5,12 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+
+
+//Habilitar el cliente Http
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<>();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -17,6 +23,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors(c => c
+                 .AllowAnyOrigin()
+                 .AllowAnyMethod()
+                 .AllowAnyHeader());
+
 
 app.UseAuthorization();
 
